@@ -1,0 +1,36 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  script(src='../node_modules/@fortawesome/fontawesome-free/js/all.js')
+  title Document
+#main-container
+  #top-container
+    #player.round-container
+      #play-button.p-button.round-container
+        i.fas.fa-play
+      #pause-button.p-button.round-container
+        i.fas.fa-pause
+      #stop-button.p-button.round-container
+        i.fas.fa-stop
+    #timer.round-container
+      label Tiempo:
+      #timer-label.round-container 00:00:00
+  #middle-container
+    #left-container
+      #operations
+      #sliders
+        #mean.slider-container
+          label(for='mean-slider') &mu;:
+          input#mean-slider(type='range' name='mean-slider' min='30' max='300' value='75' step='1')
+          span#mean-value 00:01:15
+        #deviation.slider-container
+          label(for='dev-slider') &sigma;:
+          input#dev-slider(type='range' name='dev-slider' min='1' max='150' value='8' step='1')
+          span#dev-value 00:00:08
+      #chart
+    #canvas
+    #right-container
+      #slider-container.round-container
+        #frequency-slider.multi-slider(min='0' max='100')
+script(src='./build/app.js')

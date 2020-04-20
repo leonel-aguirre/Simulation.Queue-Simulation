@@ -1,10 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
-@import "..\\node_modules\\@fortawesome\\fontawesome-free\\css\\fontawesome.css";
 
 html,
 body {
   background: #333;
   font-family: "Varela Round", sans-serif;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Opera and Firefox */
 }
 
 #main-container {
@@ -17,9 +23,9 @@ body {
 }
 
 #top-container {
+  display: flex;
   background-color: #c8c8c8;
   width: 100%;
-  height: 50px;
   border-radius: 10px;
   margin-bottom: 10px;
 }
@@ -32,7 +38,7 @@ body {
 #left-container {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 400px;
   background-color: #c8c8c8;
   border-radius: 10px;
   margin-right: 10px;
@@ -77,7 +83,7 @@ tr {
   background-color: #6663;
 }
 
-th {
+th:not(:last-child) {
   text-align: left;
 }
 
@@ -137,3 +143,144 @@ th {
   border-radius: 10px;
   flex: 1;
 }
+
+.round-container {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  background: #3333;
+  margin: 10px;
+  padding: 10px;
+}
+
+#player > .p-button {
+  margin: 0;
+}
+
+.p-button:not(:first-child) {
+  margin-left: 10px !important;
+}
+
+.p-button {
+  font-size: 20px;
+}
+
+.p-button:hover {
+  opacity: 0.5;
+}
+
+.p-button:active {
+  opacity: 0.8;
+}
+
+#timer {
+  padding: 0 0 0 10px;
+  font-size: 20px;
+}
+
+#timer-label {
+  padding: 5px;
+}
+
+#top-container > div:not(:first-child) {
+  margin-left: 0;
+}
+
+#right-container {
+  background: #c8c8c8;
+  height: 500px;
+  border-radius: 10px;
+  margin-left: 10px;
+  display: flex;
+}
+
+/* Multi-Slider styling */
+
+#slider-container {
+  display: block;
+  flex: 1;
+  background-color: #3333;
+  max-width: 20px;
+}
+
+#frequency-slider {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.multi-slider {
+  display: grid;
+  grid-template-rows: max-content 1em;
+  overflow: hidden;
+  position: relative;
+  width: calc(500px - 25px - 10px - 10px);
+  background: linear-gradient(0deg, #ccc 1em, transparent 0);
+  border-radius: 10px;
+  border: 3px solid #333;
+}
+
+.multi-slider > input[type="range"] {
+  outline: none;
+}
+
+.multi-slider > input[type="range"] {
+  grid-column: 1;
+  grid-row: 2;
+  margin: 0;
+  background: none;
+  color: #000;
+  font: inherit;
+  pointer-events: none;
+}
+
+.multi-slider > input[type="range"]::-webkit-slider-runnable-track,
+.multi-slider > input[type="range"]::-webkit-slider-thumb,
+.multi-slider > input[type="range"] {
+  -webkit-appearance: none;
+}
+
+.multi-slider > input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 100%;
+  background: none;
+}
+
+.multi-slider > input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 100%;
+  background: none;
+}
+
+.multi-slider > input[type="range"]::-webkit-slider-thumb {
+  width: 6px;
+  height: 1em;
+  background: #333;
+  pointer-events: auto;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.multi-slider > input[type="range"]::-moz-range-thumb {
+  width: 6px;
+  height: 1em;
+  background: #333;
+  pointer-events: auto;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.freq-data {
+  display: flex;
+}
+
+.color-indicator {
+  width: 10px;
+  height: 10px;
+  border: 3px solid #3333;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+/* Multi-Slider styling */

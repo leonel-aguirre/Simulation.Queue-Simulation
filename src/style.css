@@ -16,10 +16,12 @@ body {
 #main-container {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  /* position: absolute; */
+  /* left: 50%; */
+  /* top: 50%; */
+  /* transform: translate(-50%, -50%); */
+  width: calc(100% - 20px);
+  padding: 10px;
 }
 
 #top-container {
@@ -37,14 +39,19 @@ body {
 
 #left-container {
   display: flex;
+  flex: 1;
   flex-direction: column;
   width: 400px;
   background-color: #c8c8c8;
   border-radius: 10px;
-  margin-right: 10px;
+  margin-left: 10px;
   overflow: auto;
   max-height: 500px;
   overflow: hidden;
+}
+
+#info-container-row {
+  display: flex;
 }
 
 #canvas {
@@ -55,11 +62,19 @@ body {
   border-radius: 10px;
 }
 
+#operations {
+  flex-grow: 1;
+}
+
 #operations,
-#sliders,
-#chart {
+#sliders {
   margin: 10px 10px 0 10px;
-  width: calc(100% - 20px);
+  /* width: calc(100% - 20px); */
+}
+
+#sliders {
+  display: flex;
+  background: #3333;
 }
 
 .operations-table {
@@ -84,7 +99,8 @@ tr {
 }
 
 th:not(:last-child) {
-  text-align: left;
+  /* text-align: left; */
+  border-right: 1px solid #c8c8c8;
 }
 
 .operations-table > thead,
@@ -120,8 +136,20 @@ th:not(:last-child) {
   background-color: #3333;
   border-radius: 10px;
   padding: 5px;
-  margin-bottom: 10px;
   text-align: center;
+  padding: 0 10px;
+  display: flex;
+  align-items: baseline;
+  flex: 1;
+}
+
+.slider-container > input {
+  margin: 0 10px;
+  flex: 1;
+}
+
+.slider-container:not(:last-child) {
+  margin-right: 10px;
 }
 
 .slider-container > label,
@@ -139,9 +167,11 @@ th:not(:last-child) {
 }
 
 #chart {
-  margin: 0 10px 10px 10px;
+  margin-top: 10px;
+  margin-left: 10px;
   border-radius: 10px;
   flex: 1;
+  flex-grow: 2;
 }
 
 .round-container {
@@ -201,6 +231,26 @@ th:not(:last-child) {
   flex: 1;
   background-color: #3333;
   max-width: 20px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  background: #3333;
+  height: 8px;
+  border-radius: 10px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #333;
+  width: 10px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.slider:active,
+.slider:focus {
+  outline: none;
 }
 
 #frequency-slider {

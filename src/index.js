@@ -193,8 +193,8 @@ const drawBellCurve = (mean, stdDev) => {
       },
       area: {
         enableMouseTracking: true,
-        color: "#F80",
-        fillColor: "#F808",
+        color: "#06D6A0",
+        fillColor: "#06D6A033",
         zoneAxis: "x",
       },
     },

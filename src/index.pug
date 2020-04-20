@@ -17,20 +17,21 @@ head
       label Tiempo:
       #timer-label.round-container 00:00:00
   #middle-container
-    #left-container
-      #operations
-      #sliders
-        #mean.slider-container
-          label(for='mean-slider') &mu;:
-          input#mean-slider(type='range' name='mean-slider' min='30' max='300' value='75' step='1')
-          span#mean-value 00:01:15
-        #deviation.slider-container
-          label(for='dev-slider') &sigma;:
-          input#dev-slider(type='range' name='dev-slider' min='1' max='150' value='8' step='1')
-          span#dev-value 00:00:08
-      #chart
     #canvas
+    #left-container
+      #info-container-row
+        #chart
+        #operations
+      #sliders.round-container
+        .slider-container
+          label(for='mean-slider') &mu;:
+          input#mean-slider.slider(type='range' name='mean-slider' min='30' max='300' value='75' step='1')
+          span#mean-value 00:01:15
+        .slider-container
+          label(for='dev-slider') &sigma;:
+          input#dev-slider.slider(type='range' name='dev-slider' min='1' max='150' value='8' step='1')
+          span#dev-value 00:00:08
     #right-container
       #slider-container.round-container
         #frequency-slider.multi-slider(min='0' max='100')
-script(src='./build/app.js')
+//- script(src='./app.js')

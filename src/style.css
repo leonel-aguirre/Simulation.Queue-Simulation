@@ -16,10 +16,10 @@ body {
 #main-container {
   display: flex;
   flex-direction: column;
-  /* position: absolute; */
-  /* left: 50%; */
-  /* top: 50%; */
-  /* transform: translate(-50%, -50%); */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: calc(100% - 20px);
   padding: 10px;
 }
@@ -39,12 +39,10 @@ body {
 
 #left-container {
   display: flex;
-  flex: 1;
   flex-direction: column;
-  width: 400px;
+  max-width: 600px;
   background-color: #c8c8c8;
   border-radius: 10px;
-  margin-left: 10px;
   overflow: auto;
   max-height: 500px;
   overflow: hidden;
@@ -69,11 +67,11 @@ body {
 #operations,
 #sliders {
   margin: 10px 10px 0 10px;
-  /* width: calc(100% - 20px); */
 }
 
 #sliders {
   display: flex;
+  flex-direction: column;
   background: #3333;
 }
 
@@ -141,6 +139,7 @@ th:not(:last-child) {
   display: flex;
   align-items: baseline;
   flex: 1;
+  width: calc(100% - 20px);
 }
 
 .slider-container > input {
@@ -149,7 +148,7 @@ th:not(:last-child) {
 }
 
 .slider-container:not(:last-child) {
-  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .slider-container > label,
@@ -172,6 +171,15 @@ th:not(:last-child) {
   border-radius: 10px;
   flex: 1;
   flex-grow: 2;
+}
+
+#chart > div > svg {
+  border-radius: 10px;
+  width: 100% !important;
+}
+
+#chart > div {
+  width: 100% !important;
 }
 
 .round-container {
@@ -221,6 +229,15 @@ th:not(:last-child) {
   height: 500px;
   border-radius: 10px;
   margin-left: 10px;
+  display: flex;
+  flex: 1;
+}
+
+#m-slider-container {
+  background: #c8c8c8;
+  height: 500px;
+  border-radius: 10px;
+  margin-right: 10px;
   display: flex;
 }
 

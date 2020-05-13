@@ -1,6 +1,23 @@
 const p5 = require("p5");
+import { Dist } from "./Dist";
 import Highcharts from "highcharts";
 
+window.onload = () => {
+  console.log(secondsToTime(Math.ceil(Dist.invNorm(0.4, 75, 8))));
+  // canvas = p.createCanvas(500, 500);
+  // canvas.parent("canvas");
+  generateTable(operations);
+  drawBellCurve(meanSlider.value, devSlider.value);
+
+  for (let i = 0; i < sliderLabels.length; i++)
+    sliderLabels[i] = document.querySelector(`#freq-val-${i}`);
+
+  initMultiSlider(mSlider, sliderLabels);
+  document.querySelector(".highcharts-credits").style.display = "none";
+  setListeners();
+};
+
+// Requires a json object with the information of posible operations.
 let operations = require("./operations.json");
 
 let canvas;
@@ -26,42 +43,6 @@ let mSlider = document.querySelector(".multi-slider");
 mSlider.setAttribute("amount", operations.length);
 let sliderLabels = new Array(operations.length);
 
-let sketch = (p) => {
-  p.setup = () => {
-    canvas = p.createCanvas(500, 500);
-    canvas.parent("canvas");
-    generateTable(operations);
-    drawBellCurve(meanSlider.value, devSlider.value);
-
-    for (let i = 0; i < sliderLabels.length; i++)
-      sliderLabels[i] = document.querySelector(`#freq-val-${i}`);
-
-    initMultiSlider(mSlider, sliderLabels);
-    document.querySelector(".highcharts-credits").style.display = "none";
-    setListeners(p);
-  };
-
-  p.draw = () => {
-    p.background(200);
-    drawGrid(p);
-
-    if (isRunning) {
-      updateTimer();
-    }
-  };
-};
-
-let drawGrid = (p) => {
-  p.push();
-  p.strokeWeight(1);
-  p.stroke("#3333");
-  for (let i = 0; i < res; i++) {
-    p.line((p.width / res) * i, 0, (p.width / res) * i, p.height);
-    p.line(0, (p.height / res) * i, p.width, (p.height / res) * i);
-  }
-  p.pop();
-};
-
 let generateTable = (operations) => {
   let tableHtml =
     "<thead><tr><th>Operacion</th><th>Tiempo</th><th>f</th></tr></thead>";
@@ -85,7 +66,7 @@ let generateTable = (operations) => {
   document.querySelector("#operations").appendChild(tableElement);
 };
 
-let setListeners = (p) => {
+let setListeners = () => {
   //Top container elements.
   playButton.addEventListener("click", () => {
     console.log("PLAY BUTTON PRESSED");
@@ -155,6 +136,7 @@ const drawBellCurve = (mean, stdDev) => {
     chart: {
       type: "area",
       height: null,
+      width: 290,
       backgroundColor: "#3333",
       style: {
         fontFamily: "Varela Round",
@@ -262,8 +244,6 @@ function initMultiSlider(multiSlider, labels) {
       }
     }
 
-    // console.log(gradient)
-
     multiSlider.style.background = `linear-gradient(${gradient})`;
   };
 
@@ -309,4 +289,4 @@ function initMultiSlider(multiSlider, labels) {
   updateValues(multiSlider.getElementsByTagName("input"));
 }
 
-new p5(sketch);
+// new p5(sketch);

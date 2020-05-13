@@ -17,10 +17,11 @@ head
       label Tiempo:
       #timer-label.round-container 00:00:00
   #middle-container
-    #canvas
+    #m-slider-container
+      #slider-container.round-container
+        #frequency-slider.multi-slider(min='0' max='100')
     #left-container
       #info-container-row
-        #chart
         #operations
       #sliders.round-container
         .slider-container
@@ -31,7 +32,15 @@ head
           label(for='dev-slider') &sigma;:
           input#dev-slider.slider(type='range' name='dev-slider' min='1' max='150' value='8' step='1')
           span#dev-value 00:00:08
+      #chart.round-container
     #right-container
-      #slider-container.round-container
-        #frequency-slider.multi-slider(min='0' max='100')
-//- script(src='./app.js')
+      table(style="width: 100%; margin: 10px 10px 0 10px")
+        thead
+          tr
+            th H. Llegada
+            th T. Llegada
+            th H. Atencion
+            th T. Espera
+            th Operacion
+            th T. Operacion
+            th H. Salida

@@ -75,8 +75,7 @@ body {
   background: #3333;
 }
 
-.operations-table {
-  /* background-color: #3333; */
+.table-format {
   border-radius: 10px;
   padding: 10px;
   border-collapse: collapse;
@@ -101,32 +100,32 @@ th:not(:last-child) {
   border-right: 1px solid #c8c8c8;
 }
 
-.operations-table > thead,
-.operations-table > thead > tr,
-.operations-table > thead > tr > th:first-child {
+.table-format > thead,
+.table-format > thead > tr,
+.table-format > thead > tr > th:first-child {
   border-radius: 10px 0 0 0;
 }
 
-.operations-table > thead,
-.operations-table > thead > tr,
-.operations-table > thead > tr > th:last-child {
+.table-format > thead,
+.table-format > thead > tr,
+.table-format > thead > tr > th:last-child {
   border-radius: 0 10px 0 0;
 }
 
-.operations-table > tfoot,
-.operations-table > tfoot > tr,
-.operations-table > tfoot > tr > th:first-child {
+.table-format > tfoot,
+.table-format > tfoot > tr,
+.table-format > tfoot > tr > th:first-child {
   border-radius: 0 0 0 10px;
 }
 
-.operations-table > tfoot,
-.operations-table > tfoot > tr,
-.operations-table > tfoot > tr > th:last-child {
+.table-format > tfoot,
+.table-format > tfoot > tr,
+.table-format > tfoot > tr > th:last-child {
   border-radius: 0 0 10px 0;
 }
 
-.operations-table > thead,
-.operations-table > tfoot {
+.table-format > thead,
+.table-format > tfoot {
   background-color: #3333;
 }
 
@@ -176,6 +175,11 @@ th:not(:last-child) {
 #chart > div > svg {
   border-radius: 10px;
   width: 100% !important;
+}
+
+#chart > div > svg > rect {
+  width: calc(100% + 10px);
+  x: -5;
 }
 
 #chart > div {
@@ -231,6 +235,45 @@ th:not(:last-child) {
   margin-left: 10px;
   display: flex;
   flex: 1;
+}
+
+#table-container {
+  overflow: auto;
+  width: calc(100% - 20px);
+}
+
+#table-container > table > thead,
+#table-container > table > thead > tr,
+#table-container > table > thead > tr > th:last-child {
+  border-radius: 0;
+}
+
+#table-container > table > tfoot,
+#table-container > table > tfoot > tr,
+#table-container > table > tfoot > tr > th:last-child {
+  border-radius: 0;
+}
+
+/* width */
+#table-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+#table-container::-webkit-scrollbar-track {
+  background: #3334;
+  border-radius: 0 10px 10px 0;
+}
+
+/* Handle */
+#table-container::-webkit-scrollbar-thumb {
+  border-radius: 0 10px 10px 0;
+  background: #3338;
+}
+
+/* Handle on hover */
+#table-container::-webkit-scrollbar-thumb:hover {
+  background: #333;
 }
 
 #m-slider-container {

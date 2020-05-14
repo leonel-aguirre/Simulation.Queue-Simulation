@@ -60,7 +60,7 @@ let generateTable = (operations) => {
   tableHtml +=
     "<tfoot><tr><th>Operacion</th><th>Tiempo</th><th>f</th></tr></tfoot>";
   let tableElement = document.createElement("table");
-  tableElement.classList.add("operations-table");
+  tableElement.classList.add("table-format");
   tableElement.innerHTML = tableHtml;
 
   document.querySelector("#operations").appendChild(tableElement);
@@ -136,7 +136,7 @@ const drawBellCurve = (mean, stdDev) => {
     chart: {
       type: "area",
       height: null,
-      width: 290,
+      width: null,
       backgroundColor: "#3333",
       style: {
         fontFamily: "Varela Round",

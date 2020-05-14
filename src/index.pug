@@ -6,16 +6,19 @@ head
   title Queue Simulation
 #main-container
   #top-container
-    #player.round-container
-      #play-button.p-button.round-container
-        i.fas.fa-play
-      #pause-button.p-button.round-container
-        i.fas.fa-pause
-      #stop-button.p-button.round-container
-        i.fas.fa-stop
+    #button-container.round-container
+      #btn-generate.p-button.round-container GENERAR
     #timer.round-container
-      label Tiempo:
-      #timer-label.round-container 00:00:00
+      label H. Entrada:
+      #timer-label.round-container 07:00:00
+      #timer-buttons
+        #btn-increase.p-button.round-container
+          i.fas.fa-sort-up
+        #btn-decrease.p-button.round-container
+          i.fas.fa-sort-up
+    #iter-container.round-container
+      label Clientes:
+      input#iterations.round-container(value="1000")
   #middle-container
     #m-slider-container
       #slider-container.round-container
@@ -36,7 +39,7 @@ head
     #right-container
       #outer-container(style="width: 100%")
         #table-container(style="overflow: auto; margin: 10px; height: 480px; border-radius: 10px")
-          table.table-format(style="width: 100%;")
+          table#clients-table.table-format(style="width: 100%;")
             thead
               tr
                 th #
@@ -50,212 +53,166 @@ head
             tbody
               tr
                 td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 2
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 3
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 4
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 5
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 6
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 5
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 6
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 7
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 8
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 9
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 10
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 11
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 12
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 13
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 14
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
+                td 15
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
               tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-              tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-              tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-              tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-              tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-              tr
-                td 1
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-                td XYZ
-              
+                td 16
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
             tfoot
               tr
                 th #
@@ -266,13 +223,3 @@ head
                 th Operacion
                 th T. Operacion
                 th H. Salida
-            //- tbody
-            //-   tr
-            //-     td 1
-            //-     td XYZ
-            //-     td XYZ
-            //-     td XYZ
-            //-     td XYZ
-            //-     td XYZ
-            //-     td XYZ
-            //-     td XYZ

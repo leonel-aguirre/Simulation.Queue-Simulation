@@ -4,13 +4,12 @@ html,
 body {
   background: #333;
   font-family: "Varela Round", sans-serif;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
-                                    supported by Chrome, Opera and Firefox */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #main-container {
@@ -195,7 +194,7 @@ th:not(:last-child) {
   padding: 10px;
 }
 
-#player > .p-button {
+#button-container > .p-button {
   margin: 0;
 }
 
@@ -204,20 +203,76 @@ th:not(:last-child) {
 }
 
 .p-button {
+  padding: 4px;
   font-size: 20px;
+  font-weight: bold;
+  border-bottom: 2px solid #3338;
 }
 
 .p-button:hover {
-  opacity: 0.5;
-}
-
-.p-button:active {
   opacity: 0.8;
 }
 
-#timer {
+.p-button:active {
+  opacity: 0.5;
+  border-bottom: 0;
+  border-top: 2px solid #aaa;
+}
+
+#btn-generate {
+  background: repeating-linear-gradient(
+    45deg,
+    #7162d1,
+    #7162d1 10px,
+    #9081db 10px,
+    #9081db 20px
+  );
+}
+
+#btn-increase {
+  margin: 0 10px 0 0 !important;
+  height: 6px;
+  border-radius: 8px 8px 2px 2px;
+  width: 18px;
+}
+
+#btn-increase > svg {
+  transform: translate(3px, 4px);
+}
+
+#btn-decrease {
+  margin: 0 10px 0 0 !important;
+  height: 6px;
+  border-radius: 2px 2px 8px 8px;
+  width: 18px;
+}
+
+#btn-decrease > svg {
+  transform: rotate(180deg) translate(-3px, 5px);
+}
+
+#timer,
+#iter-container {
   padding: 0 0 0 10px;
   font-size: 20px;
+  font-weight: bold;
+}
+
+#iterations {
+  width: 60px;
+  margin: 7px 10px;
+  border: 0;
+  background: white;
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
+  padding: 6px;
+  font-size: 18px;
+}
+
+#iterations:hover,
+#iterations:active,
+#iterations:focus {
+  outline: 0;
 }
 
 #timer-label {

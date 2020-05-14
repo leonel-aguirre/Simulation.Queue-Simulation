@@ -2,10 +2,36 @@ const p5 = require("p5");
 import { Dist } from "./Dist";
 import Highcharts from "highcharts";
 
+// Requires a json object with the information of posible operations.
+let operations = require("./operations.json");
+
+let timerSeconds = 25200;
+
+//Top container elements.
+let genButton = document.querySelector("#btn-generate");
+let timer = document.querySelector("#timer-label");
+let incButton = document.querySelector("#btn-increase");
+let decButton = document.querySelector("#btn-decrease");
+let iterations = document.querySelector("#iterations");
+
+//Left container elements.
+let meanSlider = document.querySelector("#mean-slider");
+let meanValue = document.querySelector("#mean-value");
+let devSlider = document.querySelector("#dev-slider");
+let devValue = document.querySelector("#dev-value");
+
+//Right container elements.
+let clientTable = document.querySelector("#clients-table");
+
+//Multi Slider.
+let mSlider = document.querySelector(".multi-slider");
+mSlider.setAttribute("amount", operations.length);
+let sliderLabels = new Array(operations.length);
+
+// Main method.
 window.onload = () => {
   console.log(secondsToTime(Math.ceil(Dist.invNorm(0.4, 75, 8))));
-  // canvas = p.createCanvas(500, 500);
-  // canvas.parent("canvas");
+
   generateTable(operations);
   drawBellCurve(meanSlider.value, devSlider.value);
 
@@ -17,31 +43,34 @@ window.onload = () => {
   setListeners();
 };
 
-// Requires a json object with the information of posible operations.
-let operations = require("./operations.json");
+let fillTable = () => {
+  let nClients = parseInt(iterations.value);
 
-let canvas;
-let res = 9;
+  let arriveH = timerSeconds;
+  let timeArrive = 0;
+  let respH = arriveH;
+  let waitT = 0;
+  let operation = "";
+  let opTime = 0;
+  let leaveT = 0;
 
-let isRunning = false;
-let timerSeconds = 0;
+  let html = "";
 
-//Top container elements.
-let playButton = document.querySelector("#play-button");
-let pauseButton = document.querySelector("#pause-button");
-let stopButton = document.querySelector("#stop-button");
-let timer = document.querySelector("#timer-label");
+  for (let i = 0; i < nClients; i++) {
+    html += `<tr>`;
+    html += `<td>${i + 1}</td>`;
+    html += `<td>${arriveH}</td>`;
+    html += `<td>${timeArrive}</td>`;
+    html += `<td>${respH}</td>`;
+    html += `<td>${waitT}</td>`;
+    html += `<td>${operation}</td>`;
+    html += `<td>${opTime}</td>`;
+    html += `<td>${leaveT}</td>`;
+    html += `</tr>`;
+  }
 
-//Left container elements.
-let meanSlider = document.querySelector("#mean-slider");
-let meanValue = document.querySelector("#mean-value");
-let devSlider = document.querySelector("#dev-slider");
-let devValue = document.querySelector("#dev-value");
-
-//Multi Slider.
-let mSlider = document.querySelector(".multi-slider");
-mSlider.setAttribute("amount", operations.length);
-let sliderLabels = new Array(operations.length);
+  clientTable.querySelector("tbody").innerHTML = html;
+};
 
 let generateTable = (operations) => {
   let tableHtml =
@@ -52,7 +81,7 @@ let generateTable = (operations) => {
     for (const key in operations[i]) {
       let value = operations[i][key];
       if (key == "seconds") value = secondsToTime(value);
-      tableHtml += `<td>${value}</td>`;
+      tableHtml += `<td>${value}</tr>`;
     }
     tableHtml += `<td><div id=freq-val-${i} class='freq-data'><div class='color-indicator'></div><span>0%</span></div></td></tr>`;
   }
@@ -68,16 +97,41 @@ let generateTable = (operations) => {
 
 let setListeners = () => {
   //Top container elements.
-  playButton.addEventListener("click", () => {
-    console.log("PLAY BUTTON PRESSED");
-    isRunning = true;
-  });
 
-  pauseButton.addEventListener("click", () => {
-    isRunning = false;
-  });
+  var incDecPressed = false;
+  genButton.addEventListener("click", fillTable);
 
-  stopButton.addEventListener("click", () => {});
+  // incButton.addEventListener("mousedown", () => {
+  //   incDecPressed = true;
+  //   while (incDecPressed) {
+  //     setTimeout(() => {
+  //       timerSeconds++;
+  //       timer.textContent = secondsToTime(timerSeconds);
+  //     }, 100);
+  //   }
+  // });
+
+  // incButton.addEventListener("mouseup", () => {
+  //   incDecPressed = false;
+  // });
+
+  document.addEventListener("keydown", (e) => {
+    switch (e.which) {
+      case 38:
+        timerSeconds += 60;
+        timer.textContent = secondsToTime(timerSeconds);
+        break;
+      case 40:
+        timerSeconds -= 60;
+        timer.textContent = secondsToTime(timerSeconds);
+        break;
+      case 13:
+        sliderLabels.map((e) => {
+          console.log(e.querySelector("span").textContent);
+        });
+        break;
+    }
+  });
 
   //Left container elements.
   meanSlider.addEventListener("input", (e) => {
@@ -91,18 +145,6 @@ let setListeners = () => {
     document.querySelector(".highcharts-credits").style.display = "none";
     devValue.textContent = secondsToTime(devSlider.value);
   });
-
-  //KeyEvents.
-
-  document.body.addEventListener("keypress", (e) => {
-    if (e.keyCode == 32) {
-      isRunning = !isRunning;
-    }
-  });
-};
-
-let updateTimer = () => {
-  timer.textContent = secondsToTime(timerSeconds++);
 };
 
 let secondsToTime = (s) => {
@@ -184,8 +226,6 @@ const drawBellCurve = (mean, stdDev) => {
 };
 
 function initMultiSlider(multiSlider, labels) {
-  console.log(labels);
-
   let amount = multiSlider.getAttribute("amount");
   let min = multiSlider.getAttribute("min");
   let max = multiSlider.getAttribute("max");
@@ -278,8 +318,6 @@ function initMultiSlider(multiSlider, labels) {
       if (val >= rightLimit) slider.value = rightLimit - 1;
       if (val <= leftLimit) slider.value = leftLimit + 1;
 
-      console.log(leftLimit, slider.value, rightLimit);
-
       updateValues(siblings);
     });
 
@@ -288,5 +326,3 @@ function initMultiSlider(multiSlider, labels) {
 
   updateValues(multiSlider.getElementsByTagName("input"));
 }
-
-// new p5(sketch);

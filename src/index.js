@@ -12,7 +12,6 @@ let genButton = document.querySelector("#btn-generate");
 let timer = document.querySelector("#timer-label");
 let incButton = document.querySelector("#btn-increase");
 let decButton = document.querySelector("#btn-decrease");
-let iterations = document.querySelector("#iterations");
 
 //Left container elements.
 let meanSlider = document.querySelector("#mean-slider");
@@ -41,9 +40,13 @@ window.onload = () => {
   initMultiSlider(mSlider, sliderLabels);
   document.querySelector(".highcharts-credits").style.display = "none";
   setListeners();
+
+  fillTable();
 };
 
 let fillTable = () => {
+  console.log(meanSlider.value, devSlider.value);
+
   let nClients = parseInt(iterations.value);
 
   let arriveH = timerSeconds;
@@ -54,18 +57,50 @@ let fillTable = () => {
   let opTime = 0;
   let leaveT = 0;
 
+  let mean = parseInt(meanSlider.value);
+  let std = parseInt(devSlider.value);
+
   let html = "";
 
   for (let i = 0; i < nClients; i++) {
     html += `<tr>`;
     html += `<td>${i + 1}</td>`;
-    html += `<td>${arriveH}</td>`;
-    html += `<td>${timeArrive}</td>`;
-    html += `<td>${respH}</td>`;
-    html += `<td>${waitT}</td>`;
+
+    if (i > 0) arriveH += timeArrive;
+
+    html += `<td>${secondsToTime(arriveH)}</td>`;
+
+    timeArrive = Math.ceil(Dist.invNorm(Math.random(), mean, std));
+
+    html += `<td>${secondsToTime(timeArrive)}</td>`;
+
+    if (i > 0) respH = arriveH > leaveT ? arriveH : leaveT;
+
+    html += `<td>${secondsToTime(respH)}</td>`;
+
+    waitT = respH - arriveH;
+
+    html += `<td>${secondsToTime(waitT)}</td>`;
+
+    var frecs = mSlider.getAttribute("values").split(",");
+    var accFrec = 0;
+    var rnd = Math.random() * 100;
+
+    for (let i = 0; i < frecs.length; i++) {
+      accFrec += parseInt(frecs[i]);
+      if (rnd <= accFrec) {
+        operation = operations[i].operation;
+        opTime = operations[i].seconds;
+        break;
+      }
+    }
+
     html += `<td>${operation}</td>`;
-    html += `<td>${opTime}</td>`;
-    html += `<td>${leaveT}</td>`;
+    html += `<td>${secondsToTime(opTime)}</td>`;
+
+    leaveT = respH + opTime;
+
+    html += `<td>${secondsToTime(leaveT)}</td>`;
     html += `</tr>`;
   }
 
@@ -81,7 +116,7 @@ let generateTable = (operations) => {
     for (const key in operations[i]) {
       let value = operations[i][key];
       if (key == "seconds") value = secondsToTime(value);
-      tableHtml += `<td>${value}</tr>`;
+      tableHtml += `<td>${value}</td>`;
     }
     tableHtml += `<td><div id=freq-val-${i} class='freq-data'><div class='color-indicator'></div><span>0%</span></div></td></tr>`;
   }
@@ -98,7 +133,7 @@ let generateTable = (operations) => {
 let setListeners = () => {
   //Top container elements.
 
-  var incDecPressed = false;
+  // var incDecPressed = false;
   genButton.addEventListener("click", fillTable);
 
   // incButton.addEventListener("mousedown", () => {

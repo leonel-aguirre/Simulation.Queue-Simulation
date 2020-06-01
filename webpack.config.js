@@ -9,8 +9,7 @@ module.exports = {
     app: ["./src/index.js", "./src/style.css"],
   },
   output: {
-    path:
-      "C:\\Users\\Leonel\\Desktop\\Simulation Queue\\queues simulation\\build",
+    path: __dirname + "\\build",
     filename: "app.js",
     publicPath: "/build/",
   },

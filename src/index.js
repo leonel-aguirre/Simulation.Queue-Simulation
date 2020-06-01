@@ -44,6 +44,7 @@ window.onload = () => {
   fillTable();
 };
 
+// Fills the main table.
 let fillTable = () => {
   console.log(meanSlider.value, devSlider.value);
 
@@ -66,22 +67,27 @@ let fillTable = () => {
     html += `<tr>`;
     html += `<td>${i + 1}</td>`;
 
+    // H. LLEGADA
     if (i > 0) arriveH += timeArrive;
-
     html += `<td>${secondsToTime(arriveH)}</td>`;
+    // H. LLEGADA
 
+    // T. LLEGADA
     timeArrive = Math.ceil(Dist.invNorm(Math.random(), mean, std));
-
     html += `<td>${secondsToTime(timeArrive)}</td>`;
+    // T. LLEGADA
 
+    // H. ATENCION
     if (i > 0) respH = arriveH > leaveT ? arriveH : leaveT;
-
     html += `<td>${secondsToTime(respH)}</td>`;
+    // H. ATENCION
 
+    // H. ATENCION
     waitT = respH - arriveH;
-
     html += `<td>${secondsToTime(waitT)}</td>`;
+    // H. ATENCION
 
+    // OPERACION, T. OPERACION.
     var frecs = mSlider.getAttribute("values").split(",");
     var accFrec = 0;
     var rnd = Math.random() * 100;
@@ -97,10 +103,13 @@ let fillTable = () => {
 
     html += `<td>${operation}</td>`;
     html += `<td>${secondsToTime(opTime)}</td>`;
+    // OPERACION, T. OPERACION.
 
+    // H. SALIDA
     leaveT = respH + opTime;
-
     html += `<td>${secondsToTime(leaveT)}</td>`;
+    // H. SALIDA
+
     html += `</tr>`;
   }
 

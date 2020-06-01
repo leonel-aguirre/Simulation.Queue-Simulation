@@ -283,6 +283,17 @@ th:not(:last-child) {
   margin-left: 0;
 }
 
+#title {
+  float: right;
+  flex: 1;
+  text-align: center;
+  align-items: center;
+  font-size: 1;
+  padding: 0 0 0 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 #right-container {
   background: #c8c8c8;
   height: 500px;

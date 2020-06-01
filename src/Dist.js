@@ -15,7 +15,7 @@ export class Dist {
     }
     return p < 1 ? x : -x;
   }
-
+  //
   static erfc(x) {
     return 1 - this.erf(x);
   }

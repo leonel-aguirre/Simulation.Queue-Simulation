@@ -29,13 +29,13 @@ let sliderLabels = new Array(operations.length);
 
 // Main method.
 window.onload = () => {
-  console.log(secondsToTime(Math.ceil(Dist.invNorm(0.4, 75, 8))));
-
   generateTable(operations);
   drawBellCurve(meanSlider.value, devSlider.value);
 
   for (let i = 0; i < sliderLabels.length; i++)
     sliderLabels[i] = document.querySelector(`#freq-val-${i}`);
+
+  timer.textContent = secondsToTime(timerSeconds);
 
   initMultiSlider(mSlider, sliderLabels);
   document.querySelector(".highcharts-credits").style.display = "none";
@@ -145,37 +145,34 @@ let setListeners = () => {
   // var incDecPressed = false;
   genButton.addEventListener("click", fillTable);
 
-  // incButton.addEventListener("mousedown", () => {
-  //   incDecPressed = true;
-  //   while (incDecPressed) {
-  //     setTimeout(() => {
-  //       timerSeconds++;
-  //       timer.textContent = secondsToTime(timerSeconds);
-  //     }, 100);
-  //   }
-  // });
+  incButton.addEventListener("mousedown", () => {
+    increaseTime(60);
+  });
 
-  // incButton.addEventListener("mouseup", () => {
-  //   incDecPressed = false;
-  // });
+  decButton.addEventListener("mousedown", () => {
+    decreaseTime(60);
+  });
 
   document.addEventListener("keydown", (e) => {
     switch (e.which) {
       case 38:
-        timerSeconds += 60;
-        timer.textContent = secondsToTime(timerSeconds);
+        increaseTime(60);
         break;
       case 40:
-        timerSeconds -= 60;
-        timer.textContent = secondsToTime(timerSeconds);
-        break;
-      case 13:
-        sliderLabels.map((e) => {
-          console.log(e.querySelector("span").textContent);
-        });
+        decreaseTime(60);
         break;
     }
   });
+
+  function increaseTime(amount) {
+    timerSeconds += 60;
+    timer.textContent = secondsToTime(timerSeconds);
+  }
+
+  function decreaseTime(amount) {
+    timerSeconds -= 60;
+    timer.textContent = secondsToTime(timerSeconds);
+  }
 
   //Left container elements.
   meanSlider.addEventListener("input", (e) => {

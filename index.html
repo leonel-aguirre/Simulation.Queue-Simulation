@@ -1,0 +1,131 @@
+<!DOCTYPE html><!DOCTYPE html>
+<html lang="en">
+  <head></head
+  ><meta charset="UTF-8" /><meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <script
+    src="https://kit.fontawesome.com/aed31f57e0.js"
+    crossorigin="anonymous"
+  ></script>
+  <title>Queue Simulation</title>
+  <body>
+    <div id="main-container">
+      <div id="top-container">
+        <div class="round-container" id="button-container">
+          <div class="p-button round-container" id="btn-generate">GENERAR</div>
+        </div>
+        <div class="round-container" id="timer">
+          <label>H. Entrada:</label>
+          <div class="round-container" id="timer-label">00:00:00</div>
+          <div id="timer-buttons">
+            <div class="p-button round-container" id="btn-increase">
+              <i class="fas fa-sort-up"></i>
+            </div>
+            <div class="p-button round-container" id="btn-decrease">
+              <i class="fas fa-sort-up"></i>
+            </div>
+          </div>
+        </div>
+        <div class="round-container" id="iter-container">
+          <label>Clientes:</label
+          ><input class="round-container" id="iterations" value="1000" />
+        </div>
+        <div class="round-container" id="title">
+          SIMULACION - FILA DE ESPERA
+        </div>
+      </div>
+      <div id="middle-container">
+        <div id="m-slider-container">
+          <div class="round-container" id="slider-container">
+            <div
+              class="multi-slider"
+              id="frequency-slider"
+              min="0"
+              max="100"
+            ></div>
+          </div>
+        </div>
+        <div id="left-container">
+          <div id="info-container-row"><div id="operations"></div></div>
+          <div class="round-container" id="sliders">
+            <div class="slider-container">
+              <label for="mean-slider">&mu;:</label
+              ><input
+                class="slider"
+                id="mean-slider"
+                type="range"
+                name="mean-slider"
+                min="30"
+                max="300"
+                value="75"
+                step="1"
+              /><span id="mean-value">00:01:15</span>
+            </div>
+            <div class="slider-container">
+              <label for="dev-slider">&sigma;:</label
+              ><input
+                class="slider"
+                id="dev-slider"
+                type="range"
+                name="dev-slider"
+                min="1"
+                max="150"
+                value="8"
+                step="1"
+              /><span id="dev-value">00:00:08</span>
+            </div>
+          </div>
+          <div class="round-container" id="chart"></div>
+        </div>
+        <div id="right-container">
+          <div id="outer-container" style="width: 100%;">
+            <div
+              id="table-container"
+              style="
+                overflow: auto;
+                margin: 10px;
+                height: 480px;
+                border-radius: 10px;
+              "
+            >
+              <table
+                class="table-format"
+                id="clients-table"
+                style="width: 100%;"
+              >
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>H. Llegada</th>
+                    <th>T. Llegada</th>
+                    <th>H. Atencion</th>
+                    <th>T. Espera</th>
+                    <th>Operacion</th>
+                    <th>T. Operacion</th>
+                    <th>H. Salida</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                  <tr>
+                    <th>#</th>
+                    <th>H. Llegada</th>
+                    <th>T. Llegada</th>
+                    <th>H. Atencion</th>
+                    <th>T. Espera</th>
+                    <th>Operacion</th>
+                    <th>T. Operacion</th>
+                    <th>H. Salida</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

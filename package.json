@@ -23,7 +23,6 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.13.0",
     "highcharts": "^8.0.4",
     "p5": "^1.0.0"
   }

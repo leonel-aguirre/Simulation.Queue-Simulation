@@ -236,7 +236,7 @@ th:not(:last-child) {
   width: 18px;
 }
 
-#btn-increase > svg {
+#btn-increase > i {
   transform: translate(3px, 4px);
 }
 
@@ -247,7 +247,7 @@ th:not(:last-child) {
   width: 18px;
 }
 
-#btn-decrease > svg {
+#btn-decrease > i {
   transform: rotate(180deg) translate(-3px, 5px);
 }
 
